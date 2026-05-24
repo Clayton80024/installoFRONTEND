@@ -22,11 +22,26 @@ export default function Footer() {
             ))}
           </nav>
 
-          {/* Trust */}
-          <p className="text-xs text-[#9CA3AF] text-right leading-relaxed">
-            Secured by Supabase Auth<br />
-            Payments via FedNow &amp; ACH
-          </p>
+          {/* Trust badges */}
+          <div className="flex items-center gap-3">
+            {/* Moov */}
+            <div className="flex items-center gap-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-3 py-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[#6B7280]">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="text-[11px] font-semibold text-[#374151]">Moov</span>
+            </div>
+            {/* Plaid */}
+            <div className="flex items-center gap-1.5 bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg px-3 py-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[#6B7280]">
+                <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" opacity="0.6"/>
+                <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" opacity="0.6"/>
+                <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" opacity="0.3"/>
+              </svg>
+              <span className="text-[11px] font-semibold text-[#374151]">Plaid</span>
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-[#F3F4F6] flex flex-col sm:flex-row items-center justify-between gap-2">
