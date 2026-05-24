@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body style={{ fontFamily: "var(--font-dm-sans, var(--font-sans))" }}>
         {children}
         <Analytics />
+        <GoogleAnalytics gaId="G-0MNY63QR8V" />
       </body>
     </html>
   );
