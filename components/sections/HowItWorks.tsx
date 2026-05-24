@@ -44,7 +44,7 @@ const fadeRight: Variants = {
 
 export default function HowItWorks() {
   return (
-    <section id="product" className="py-16 md:py-28 px-4 sm:px-6 bg-white">
+    <section id="product" className="py-16 md:py-28 px-4 sm:px-6 bg-white scroll-mt-20">
       <div className="max-w-6xl mx-auto">
 
         {/* Section header */}

@@ -69,10 +69,14 @@ export default function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-5">
-              {["Product", "Pricing", "Login"].map((item) => (
+              {[
+                { label: "Product", href: "/#product" },
+                { label: "Pricing", href: "/#pricing" },
+                { label: "Login",   href: "https://app.tryinstallo.com" },
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={item.href}
                   className="text-sm font-medium transition-colors duration-300 hover:opacity-100"
                   style={{
                     color: atTop ? "rgba(255,255,255,0.75)" : "#374151",
@@ -84,7 +88,7 @@ export default function Navbar() {
                     (e.target as HTMLElement).style.color = atTop ? "rgba(255,255,255,0.75)" : "#374151";
                   }}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
 
@@ -136,14 +140,18 @@ export default function Navbar() {
             }}
           >
             <div className="px-5 py-4 flex flex-col gap-1">
-              {["Product", "Pricing", "Login"].map((item) => (
+              {[
+                { label: "Product", href: "/#product" },
+                { label: "Pricing", href: "/#pricing" },
+                { label: "Login",   href: "https://app.tryinstallo.com" },
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={item.href}
                   onClick={() => setMobileOpen(false)}
                   className="text-sm font-medium text-[#374151] hover:text-[#2563EB] py-2.5 border-b border-[#F3F4F6] last:border-0 transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
               <Button variant="primary" size="md" className="mt-3 w-full">
