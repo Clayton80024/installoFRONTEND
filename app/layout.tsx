@@ -1,22 +1,7 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-dm-mono",
-  display: "swap",
-});
 
 const BASE_URL = "https://www.tryinstallo.com";
 
@@ -24,11 +9,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: "installo — Invoice & Get Paid Faster",
-    template: "%s | installo",
+    default: "Installo — Get paid by bank, sent in seconds",
+    template: "%s | Installo",
   },
   description:
-    "Installo gives small businesses a live dashboard for every invoice, payment plan, and customer. Send invoices in 2 minutes, offer installment plans, and get paid automatically.",
+    "Installo turns any payment into a secure pay-by-bank link. Your customer pays straight from their bank — no card fees, money in your account in 1–2 business days.",
 
   keywords: [
     "invoicing app",
@@ -129,14 +114,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body style={{ fontFamily: "var(--font-dm-sans, var(--font-sans))" }}>
+      <body>
         {children}
         <Analytics />
         <GoogleAnalytics gaId="G-0MNY63QR8V" />
