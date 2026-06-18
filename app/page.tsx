@@ -14,8 +14,9 @@ export default function Home() {
     onScroll();
 
     // Showcase: scroll-pinned horizontal track
-    const showcase = document.getElementById("stories");
-    if (showcase) {
+    const showcaseEl = document.getElementById("stories");
+    if (showcaseEl) {
+      const showcase = showcaseEl as HTMLElement;
       const sticky = showcase.querySelector(".sc-sticky") as HTMLElement;
       const track = document.getElementById("scTrack") as HTMLElement;
       const fill = document.getElementById("scFill") as HTMLElement;

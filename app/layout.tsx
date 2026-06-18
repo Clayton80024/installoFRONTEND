@@ -40,6 +40,12 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
 
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
+
   openGraph: {
     type: "website",
     url: BASE_URL,
