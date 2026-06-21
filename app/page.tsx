@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import ChaseMoney from "@/components/sections/ChaseMoney";
 
 export default function Home() {
   useEffect(() => {
@@ -304,6 +305,9 @@ export default function Home() {
           <span className="trust-item">No card networks, no card fees</span>
         </div>
       </div>
+
+      {/* Chase Money */}
+      <ChaseMoney />
 
       {/* How it works */}
       <section className="how" id="how">
