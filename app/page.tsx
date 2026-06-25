@@ -89,9 +89,14 @@ export default function Home() {
     if (featRows.length && "IntersectionObserver" in window) {
       const ro = new IntersectionObserver(
         (es) => { es.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).classList.add("in"); }); },
-        { threshold: 0.25 }
+        { threshold: 0.1 }
       );
       featRows.forEach((r) => ro.observe(r));
+      // Fallback: ensure rows already in viewport on load get animated in
+      setTimeout(() => featRows.forEach((r) => {
+        const rect = (r as HTMLElement).getBoundingClientRect();
+        if (rect.top < window.innerHeight) (r as HTMLElement).classList.add("in");
+      }), 300);
     } else {
       featRows.forEach((r) => r.classList.add("in"));
     }
