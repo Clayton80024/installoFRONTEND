@@ -89,17 +89,12 @@ export default function Home() {
     if (featRows.length && "IntersectionObserver" in window) {
       const ro = new IntersectionObserver(
         (es) => { es.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).classList.add("in"); }); },
-        { threshold: 0.1 }
+        { threshold: 0, rootMargin: "0px 0px -60px 0px" }
       );
       featRows.forEach((r) => ro.observe(r));
-      // Fallback: ensure rows already in viewport on load get animated in
-      setTimeout(() => featRows.forEach((r) => {
-        const rect = (r as HTMLElement).getBoundingClientRect();
-        if (rect.top < window.innerHeight) (r as HTMLElement).classList.add("in");
-      }), 300);
-    } else {
-      featRows.forEach((r) => r.classList.add("in"));
     }
+    // Always ensure all rows become visible — critical fallback for prod
+    setTimeout(() => featRows.forEach((r) => (r as HTMLElement).classList.add("in")), 800);
 
     // Hero pay-link: cycle Request → Paying → Paid
     const stage = document.querySelector(".visual-stage") as HTMLElement;
