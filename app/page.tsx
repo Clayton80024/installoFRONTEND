@@ -84,6 +84,18 @@ export default function Home() {
       }
     }
 
+    // Platform feat-rows: animate in on scroll
+    const featRows = document.querySelectorAll(".feat-row");
+    if (featRows.length && "IntersectionObserver" in window) {
+      const ro = new IntersectionObserver(
+        (es) => { es.forEach((e) => { if (e.isIntersecting) (e.target as HTMLElement).classList.add("in"); }); },
+        { threshold: 0.25 }
+      );
+      featRows.forEach((r) => ro.observe(r));
+    } else {
+      featRows.forEach((r) => r.classList.add("in"));
+    }
+
     // Hero pay-link: cycle Request → Paying → Paid
     const stage = document.querySelector(".visual-stage") as HTMLElement;
     if (stage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -460,6 +472,262 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Platform — More than a payment link */}
+      <section className="plat" id="platform">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="eyebrow"><span className="pip"></span>More than a payment link</span>
+            <h2 className="sec-title">Everything your crew needs.</h2>
+            <p className="sec-sub">Installo isn&apos;t just a link — it&apos;s everything you need to get paid, without hiring anyone.</p>
+          </div>
+
+          <div className="feat-rows">
+
+            {/* ROW 1 — Autopay */}
+            <div className="feat-row">
+              <div className="feat-copy">
+                <div className="feat-ic">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 11a8 8 0 1 0-.6 3.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"/><path d="M20 5.5V11h-5.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div className="feat-kicker">Autopay</div>
+                <h3 className="feat-t">Stop texting clients to pay you.</h3>
+                <p className="feat-b">Set up a charge once. Installo bills your client on the day it&apos;s due and the money just shows up — <b>you don&apos;t lift a finger</b>.</p>
+                <ul className="feat-pts">
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Runs on time, every time</li>
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>No reminders, no awkward follow-ups</li>
+                </ul>
+              </div>
+              <div className="feat-stage">
+                <div className="pdev">
+                  <div className="device-frame">
+                    <div className="island"></div>
+                    <div className="device-screen">
+                      <div className="scr">
+                        <div className="scr-bar">
+                          <span>9:41</span>
+                          <span style={{display:"flex",alignItems:"center",gap:6}}>
+                            <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="1" fill="#0B1411"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="1" fill="#0B1411"/><rect x="9" y="2" width="3" height="9" rx="1" fill="#0B1411"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#B2BEB6"/></svg>
+                            <svg width="23" height="11" viewBox="0 0 23 11" fill="none"><rect x="0.5" y="0.5" width="19" height="10" rx="3" stroke="#0B1411" strokeOpacity="0.5"/><rect x="2" y="2" width="14" height="7" rx="1.5" fill="#0B1411"/><rect x="20.5" y="3.5" width="2" height="4" rx="1" fill="#0B1411" fillOpacity="0.5"/></svg>
+                          </span>
+                        </div>
+                        <div className="scr-body" style={{gap:11,position:"relative"}}>
+                          <div className="p-top">
+                            <span className="s-title">Autopay</span>
+                            <span className="p-toggle"></span>
+                          </div>
+                          <div className="p-pill"><span className="lz"></span>Collecting from 3 clients</div>
+                          <div className="p-charge">
+                            <span className="p-ch-ic done"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                            <span><span className="p-ch-name">Jordan Miller</span><span className="p-ch-sub">Weekly lawn care</span></span>
+                            <span className="p-ch-amt">$240<small className="done">Charged</small></span>
+                          </div>
+                          <div className="p-charge">
+                            <span className="p-ch-ic done"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                            <span><span className="p-ch-name">Sarah K.</span><span className="p-ch-sub">Monthly cleaning</span></span>
+                            <span className="p-ch-amt">$180<small className="done">Charged</small></span>
+                          </div>
+                          <div className="p-charge pa-flip">
+                            <span className="p-ch-ic wait"><svg className="pa-check" style={{opacity:0}} width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                            <span><span className="p-ch-name">Marcus D.</span><span className="p-ch-sub">Weekly lawn care</span></span>
+                            <span className="p-ch-amt">$320<small className="wait pa-amt-wait">Due today</small><small className="done pa-amt-done" style={{opacity:0}}>Charged</small></span>
+                          </div>
+                          <div className="s-fill"></div>
+                          <div className="pa-toast" style={{position:"absolute",left:20,right:20,bottom:18,display:"flex",alignItems:"center",gap:9,background:"#0B1411",color:"#fff",borderRadius:13,padding:"11px 13px",boxShadow:"0 14px 30px rgba(11,20,17,.28)",opacity:0}}>
+                            <span style={{width:22,height:22,borderRadius:"50%",background:"var(--accent)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                            <span style={{fontSize:12.5,fontWeight:600}}>Collected $320 from Marcus</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ROW 2 — Live Dashboard */}
+            <div className="feat-row">
+              <div className="feat-copy">
+                <div className="feat-ic">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 19V5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"/><path d="M4 19h16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"/><path d="M7.5 14.5l3.5-4 3 2.5 4.5-6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div className="feat-kicker">Live Dashboard</div>
+                <h3 className="feat-t">Always know who paid.</h3>
+                <p className="feat-b">Open Installo and see what&apos;s <b>paid, pending, and coming in</b> this week — updated the second a client pays. No spreadsheet, no guessing.</p>
+                <ul className="feat-pts">
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Live totals for the week</li>
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>See every payment the moment it lands</li>
+                </ul>
+              </div>
+              <div className="feat-stage">
+                <div className="pdev">
+                  <div className="device-frame">
+                    <div className="island"></div>
+                    <div className="device-screen">
+                      <div className="scr">
+                        <div className="scr-bar">
+                          <span>9:41</span>
+                          <span style={{display:"flex",alignItems:"center",gap:6}}>
+                            <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="1" fill="#0B1411"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="1" fill="#0B1411"/><rect x="9" y="2" width="3" height="9" rx="1" fill="#0B1411"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#B2BEB6"/></svg>
+                            <svg width="23" height="11" viewBox="0 0 23 11" fill="none"><rect x="0.5" y="0.5" width="19" height="10" rx="3" stroke="#0B1411" strokeOpacity="0.5"/><rect x="2" y="2" width="14" height="7" rx="1.5" fill="#0B1411"/><rect x="20.5" y="3.5" width="2" height="4" rx="1" fill="#0B1411" fillOpacity="0.5"/></svg>
+                          </span>
+                        </div>
+                        <div className="scr-body" style={{gap:9}}>
+                          <div className="p-top"><span className="s-title">Dashboard</span></div>
+                          <div className="s-label">Collected this week</div>
+                          <div className="p-dash-amt"><span className="cur">$</span>2,480</div>
+                          <span className="p-delta pd-delta">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M6 11l6-6 6 6" stroke="#0B6E4A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            +$240 just now
+                          </span>
+                          <div className="p-bars pd-bars">
+                            <i style={{"--h":"34%"} as React.CSSProperties}></i>
+                            <i style={{"--h":"58%"} as React.CSSProperties}></i>
+                            <i style={{"--h":"42%"} as React.CSSProperties}></i>
+                            <i className="on" style={{"--h":"80%"} as React.CSSProperties}></i>
+                            <i style={{"--h":"50%"} as React.CSSProperties}></i>
+                            <i className="on" style={{"--h":"68%"} as React.CSSProperties}></i>
+                            <i style={{"--h":"38%"} as React.CSSProperties}></i>
+                          </div>
+                          <div className="s-label" style={{marginTop:4}}>Recent</div>
+                          <div className="p-row pd-newrow">
+                            <span className="s-av" style={{background:"#2E7D5B",width:32,height:32,borderRadius:10}}>JM</span>
+                            <span><span className="p-rname">Jordan Miller</span><span className="p-rsub">just now</span></span>
+                            <span className="p-rstat paid">Paid · $240</span>
+                          </div>
+                          <div className="p-row">
+                            <span className="s-av" style={{background:"#9AA8A2",width:32,height:32,borderRadius:10}}>DR</span>
+                            <span><span className="p-rname">Dana R.</span><span className="p-rsub">waiting on client</span></span>
+                            <span className="p-rstat pend">Pending</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ROW 3 — Recurring Schedules */}
+            <div className="feat-row">
+              <div className="feat-copy">
+                <div className="feat-ic">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="3" stroke="currentColor" strokeWidth="1.9"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"/><path d="M9 14.5l1.8 1.8L15 12.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div className="feat-kicker">Recurring Schedules</div>
+                <h3 className="feat-t">Never write the same invoice twice.</h3>
+                <p className="feat-b">Got a weekly or monthly client? Set the day and the amount once, and <b>Installo sends the bill for you</b> — this week, next week, every week.</p>
+                <ul className="feat-pts">
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Set it once, it runs forever</li>
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Edit or pause anytime</li>
+                </ul>
+              </div>
+              <div className="feat-stage">
+                <div className="pdev">
+                  <div className="device-frame">
+                    <div className="island"></div>
+                    <div className="device-screen">
+                      <div className="scr">
+                        <div className="scr-bar">
+                          <span>9:41</span>
+                          <span style={{display:"flex",alignItems:"center",gap:6}}>
+                            <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="1" fill="#0B1411"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="1" fill="#0B1411"/><rect x="9" y="2" width="3" height="9" rx="1" fill="#0B1411"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#B2BEB6"/></svg>
+                            <svg width="23" height="11" viewBox="0 0 23 11" fill="none"><rect x="0.5" y="0.5" width="19" height="10" rx="3" stroke="#0B1411" strokeOpacity="0.5"/><rect x="2" y="2" width="14" height="7" rx="1.5" fill="#0B1411"/><rect x="20.5" y="3.5" width="2" height="4" rx="1" fill="#0B1411" fillOpacity="0.5"/></svg>
+                          </span>
+                        </div>
+                        <div className="scr-body" style={{gap:12}}>
+                          <div className="p-top">
+                            <span className="s-title">Schedule</span>
+                            <span className="p-pill pr-toggle"><span className="lz"></span>Active</span>
+                          </div>
+                          <div className="p-sched">
+                            <div className="p-sched-top">
+                              <span className="s-av" style={{background:"#2E7D5B"}}>JM</span>
+                              <span><span className="p-rname">Jordan Miller</span><span className="p-rsub">Lawn care</span></span>
+                            </div>
+                            <div className="p-every">
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="3" stroke="#0B6E4A" strokeWidth="1.9"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="#0B6E4A" strokeWidth="1.9" strokeLinecap="round"/></svg>
+                              Every Monday · $80
+                            </div>
+                          </div>
+                          <div className="s-label">Next charges</div>
+                          <div className="p-dates">
+                            <div className="p-date pr-date"><span className="dnum">1</span><span className="dt">Mon, Jun 23</span><span className="nx">Next</span></div>
+                            <div className="p-date pr-date"><span className="dnum">2</span><span className="dt">Mon, Jun 30</span></div>
+                            <div className="p-date pr-date"><span className="dnum">3</span><span className="dt">Mon, Jul 7</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ROW 4 — Branded Invoices */}
+            <div className="feat-row">
+              <div className="feat-copy">
+                <div className="feat-ic">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2.5" stroke="currentColor" strokeWidth="1.9"/><circle cx="12" cy="8.5" r="2.2" stroke="currentColor" strokeWidth="1.7"/><path d="M9 16.5h6M10 13.5h4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round"/></svg>
+                </div>
+                <div className="feat-kicker">Branded Invoices</div>
+                <h3 className="feat-t">Look like a real business.</h3>
+                <p className="feat-b">Your name and logo on every request. Your client gets <b>a real invoice by text</b> — not a random link they&apos;re scared to tap.</p>
+                <ul className="feat-pts">
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Your logo and business name</li>
+                  <li><span className="fc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#0E9F6E" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>Sent by text in one tap</li>
+                </ul>
+              </div>
+              <div className="feat-stage">
+                <div className="pdev">
+                  <div className="device-frame">
+                    <div className="island"></div>
+                    <div className="device-screen">
+                      <div className="scr">
+                        <div className="scr-bar">
+                          <span>9:41</span>
+                          <span style={{display:"flex",alignItems:"center",gap:6}}>
+                            <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="1" fill="#0B1411"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="1" fill="#0B1411"/><rect x="9" y="2" width="3" height="9" rx="1" fill="#0B1411"/><rect x="13.5" y="0" width="3" height="11" rx="1" fill="#B2BEB6"/></svg>
+                            <svg width="23" height="11" viewBox="0 0 23 11" fill="none"><rect x="0.5" y="0.5" width="19" height="10" rx="3" stroke="#0B1411" strokeOpacity="0.5"/><rect x="2" y="2" width="14" height="7" rx="1.5" fill="#0B1411"/><rect x="20.5" y="3.5" width="2" height="4" rx="1" fill="#0B1411" fillOpacity="0.5"/></svg>
+                          </span>
+                        </div>
+                        <div className="scr-body" style={{gap:13}}>
+                          <div className="p-top"><span className="s-title">Send invoice</span></div>
+                          <div className="p-inv">
+                            <div className="p-inv-head">
+                              <span className="p-inv-logo">M</span>
+                              <span>
+                                <span className="p-inv-biz">Maple Home Services</span>
+                                <span className="p-inv-ver">
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 11V8a6 6 0 0 1 12 0v3" stroke="#7C887F" strokeWidth="1.9"/><rect x="4.5" y="11" width="15" height="9.5" rx="2.4" stroke="#7C887F" strokeWidth="1.9"/></svg>
+                                  Verified business
+                                </span>
+                              </span>
+                            </div>
+                            <div className="p-inv-line"><span>Weekly lawn service — May</span><b>$240</b></div>
+                            <div className="p-inv-total"><span className="lab">Total due</span><span className="amt">$240</span></div>
+                          </div>
+                          <div className="s-fill"></div>
+                          <div className="s-btn pb-btn">Send by text
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                          </div>
+                          <div className="p-sms pb-sms">
+                            <span className="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+                            <span className="tx">Sent to Jordan Miller — they got your invoice by text.</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <p className="plat-cta">All features included from day one. <a href="#access">Start free <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a></p>
+        </div>
+      </section>
+
       {/* Showcase */}
       <section className="showcase" id="stories">
         <div className="sc-sticky">
@@ -558,6 +826,11 @@ export default function Home() {
               Secured by Plaid
             </span>
             <span>© 2026 Installo</span>
+            <span>
+              <a href="/privacy" style={{ color: "inherit", textDecoration: "underline" }}>Privacy Policy</a>
+              {" · "}
+              <a href="/terms" style={{ color: "inherit", textDecoration: "underline" }}>Terms of Service</a>
+            </span>
           </div>
         </div>
       </footer>
