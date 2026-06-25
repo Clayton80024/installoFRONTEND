@@ -781,7 +781,7 @@ export default function Home() {
             </article>
 
             <article className="sc-card">
-              <Image src="/showcase/e7564d23-51ba-489b-8e14-6db5d6430f08.jpg" alt="Two plumbers repairing a water line in a front yard beside a Marietta Plumbing van" fill style={{ objectFit: "cover", transform: "scale(1.02)" }} loading="lazy" />
+              <Image src="/showcase/e7564d23-51ba-489b-8e14-6db5d6430f08.png" alt="Two plumbers repairing a water line in a front yard beside a Marietta Plumbing van" fill style={{ objectFit: "cover", transform: "scale(1.02)" }} loading="lazy" />
               <div className="grad"></div>
               <span className="sc-tag"><span className="pip"></span>Plumbing</span>
               <div className="sc-body">
